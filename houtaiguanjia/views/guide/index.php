@@ -1,0 +1,10 @@
+<?php echo \Sky\help\Html::link('软件院论坛','http://srt.skyworth.com/phpwind/index.php',array('target'=>"_blank")); ?><br>
+<?php echo \Sky\help\Html::link('天赐统计','http://stat.tvos.skysrt.com/WebUI/statisticsPage/',array('target'=>"_blank")); ?><br>
+<?php echo \Sky\help\Html::link('天赐统计-接口耗时','http://stat.tvos.skysrt.com/WebUI/statisticsPage/webServer.html',array('target'=>"_blank")); ?><br>
+<?php echo \Sky\help\Html::link('dev redis监控','http://42.121.113.121:8888/index.html#',array('target'=>"_blank")); ?><br>
+<?php echo \Sky\help\Html::link('dev redis数据查询','http://42.121.113.121:6060/?overview',array('target'=>"_blank")); ?><br>
+<?php echo \Sky\help\Html::link('sky redis监控','http://121.199.45.40:8080/index.html#',array('target'=>"_blank")); ?><br>
+<?php echo \Sky\help\Html::link('sky memcache监控','http://121.199.45.30/mon_mem.php',array('target'=>"_blank")); ?><br>
+<?php echo \Sky\help\Html::link('cacti监控','http://42.121.104.85/cacti',array('target'=>"_blank")); ?><br>
+<?php echo \Sky\help\Html::link('dev beta rabbitMQ监控','http://42.121.113.121:15672/',array('target'=>"_blank")); ?><br>
+<?php echo \Sky\help\Html::link('release rabbitMQ监控','http://42.121.14.43:15672/',array('target'=>"_blank")); ?><br>

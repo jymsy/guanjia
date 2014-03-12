@@ -472,7 +472,7 @@ div.form.man pre.results span.error
 	padding: 1px;
 }
 
-#fancybox-inner .error
+/*#fancybox-inner .error
 {
 	color: red;
 }
@@ -527,7 +527,7 @@ div.form.man pre.results span.error
 	float: right;
 }
 
-#mainmenu
+/*#mainmenu
 {
 	background:white url(bg.gif) repeat-x left top;
 }
@@ -559,4 +559,4 @@ div.form.man pre.results span.error
 	color: #6399cd;
 	background-color:#EFF4FA;
 	text-decoration:none;
-}
+}*/

@@ -6,32 +6,32 @@
 如果查出的管理员uid为空或mac为空，而且还有电视信息，说明设备表中有mac为空的信息。</p>
 </div>
 <div class="form man">
-	<?php $form=$this->beginWidget('Sky\web\widgets\ActiveForm'); ?>
-		<div class="row">
-			<?php echo $form->labelEx($model,'server'); ?>
-		<div class="col-xs-3">
-			<?php echo $form->dropDownList($model,'server',$serverlist, array('class'=>"form-control")); ?>
+	<?php $form=$this->beginWidget('Sky\web\widgets\ActiveForm',array('htmlOptions'=>array('class'=>"form-horizontal"))); ?>
+	<div class="form-group">
+			<?php echo $form->labelEx($model,'server',array('class'=>"col-sm-2 control-label")); ?>
+			<div class="col-xs-3">
+				<?php echo $form->dropDownList($model,'server',$serverlist, array('class'=>"form-control")); ?>
+			</div>
 			<div class="tooltip">从dev、beta还是sky的redis查询session</div>
 			<?php echo $form->error($model,'server'); ?>
-			</div>
-		</div><!-- row -->
-			<div class="row">
-				<?php echo $form->labelEx($model,'sessionid'); ?>
-				
+	</div>
+	<div class="form-group">
+			<?php echo $form->labelEx($model,'sessionid',array('class'=>"col-sm-2 control-label")); ?>
+			<div class="col-xs-8">
 				<?php echo $form->textField($model,'sessionid',array('size'=>50, 'class'=>"form-control")); ?>
-				<div class="tooltip">
-					sessionId，新框架ssession有两种格式：
-					<ul>
-						<li>正常登陆后获得的session，形如：<code>015c587a0d23c0e24a2c515c80b849bd-forold</code></li>
-						<li>登录失败后客户端组的临时会话，形如：<code>xxxxxxxx:abcdefgh0011</code></li>
-					</ul>
-				</div>
-				<?php echo $form->error($model,'sessionid'); ?>
-
-			</div><!-- row -->
-			<div class="buttons">
-				<?php echo Sky\help\Html::submitButton('提交',array('name'=>'submit','class'=>"btn btn-primary")); ?>
 			</div>
+			<div class="tooltip">
+				sessionId，新框架ssession有两种格式：
+				<ul>
+					<li>正常登陆后获得的session，形如：<code>015c587a0d23c0e24a2c515c80b849bd-forold</code></li>
+					<li>登录失败后客户端组的临时会话，形如：<code>xxxxxxxx:abcdefgh0011</code></li>
+				</ul>
+			</div>
+			<?php echo $form->error($model,'sessionid'); ?>
+		</div><!-- row -->
+		<div class="buttons">
+			<?php echo Sky\help\Html::submitButton('提交',array('name'=>'submit','class'=>"btn btn-primary")); ?>
+		</div>
 	<?php $this->endWidget(); ?>
 </div>
 

@@ -1,20 +1,17 @@
 <?php $this->beginContent('/layouts/main'); ?>
 <div class="container">
-	<div class="span-4">
-		<div id="sidebar">
-			  <ul>
-				<li><?php echo \Sky\help\Html::link('查询tvinfo',array('session/index'));?></li><br/>
-				<li><?php echo \Sky\help\Html::link('生成session',array('session/create'));?></li><br/>
-			</ul>
-			
-		</div><!-- sidebar -->
+	<div class="col-xs-6 col-sm-2 sidebar-offcanvas" id="sidebar">
+		<div class="list-group">
+			<?php echo \Sky\help\Html::link('查询tvinfo',array('session/index'),array('class'=>'list-group-item'));?>
+			<?php echo \Sky\help\Html::link('生成session',array('session/create'),array('class'=>'list-group-item'));?>
+		</div>
 	</div>
-	<div class="span-16">
+	<div class="col-xs-8 col-sm-7">
 		<div id="content">
 			<?php echo $content; ?>
 		</div><!-- content -->
 	</div>
-	<div class="span-4 last">
+	<div class="col-xs-4 col-sm-3">
 		&nbsp;
 	</div>
 </div>

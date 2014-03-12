@@ -6,16 +6,20 @@
 </div>
 <div class="form man">
 	<label class="required"><span class="required">*</span>不保证该mac创建的session一定能查到设备信息，只能在dev或beta上创建<span class="required">*</span></label>
-	<?php $form=$this->beginWidget('Sky\web\widgets\ActiveForm'); ?>
-		<div class="row">
-			<?php echo $form->labelEx($model,'server'); ?>
-			<?php echo $form->dropDownList($model,'server',$serverlist); ?>
+	<?php $form=$this->beginWidget('Sky\web\widgets\ActiveForm',array('htmlOptions'=>array('class'=>"form-horizontal"))); ?>
+		<div class="form-group">
+			<?php echo $form->labelEx($model,'server', array('class'=>"col-sm-2 control-label")); ?>
+			<div class="col-xs-3">
+				<?php echo $form->dropDownList($model,'server',$serverlist,array('class'=>"form-control")); ?>
+			</div>
 			<div class="tooltip">在dev还是beta创建session</div>
 			<?php echo $form->error($model,'server'); ?>
 		</div><!-- row -->
-		<div class="row">
-			<?php echo $form->labelEx($model,'mac'); ?>
-			<?php echo $form->textField($model,'mac',array('size'=>20)); ?>
+		<div class="form-group">
+			<?php echo $form->labelEx($model,'mac', array('class'=>"col-sm-2 control-label")); ?>
+			<div class="col-xs-4">
+				<?php echo $form->textField($model,'mac',array('size'=>20, 'class'=>"form-control")); ?>
+			</div>
 				<div class="tooltip">
 					电视的mac，必须全部小写，去掉冒号：
 					<ul>
@@ -25,9 +29,9 @@
 				<?php echo $form->error($model,'mac'); ?>
 		</div>
 		<div class="buttons">
-			<?php echo Sky\help\Html::submitButton('获取mac信息',array('name'=>'submit')); ?>
+			<?php echo Sky\help\Html::submitButton('获取mac信息',array('name'=>'submit','class'=>"btn btn-primary")); ?>
 			<?php if ($model->status===houtaiguanjia\models\Mac::STATUS_FEEDBACK): ?>
-				<?php echo Sky\help\Html::submitButton('生成session',array('name'=>'generate')); ?>
+				<?php echo Sky\help\Html::submitButton('生成session',array('name'=>'generate','class'=>"btn btn-primary")); ?>
 			<?php endif; ?>
 		</div>
 		<?php if ($model->status===houtaiguanjia\models\Mac::STATUS_FEEDBACK): ?>

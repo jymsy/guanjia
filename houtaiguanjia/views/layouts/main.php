@@ -1,14 +1,7 @@
 <!DOCTYPE>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<!-- blueprint CSS framework -->
-	<!-- <link rel="stylesheet" type="text/css" href="./assets/css/screen.css" media="screen, projection" />
-	<link rel="stylesheet" type="text/css" href="./assets/css/print.css" media="print" /> -->
-	<!--[if lt IE 8]>
-	<link rel="stylesheet" type="text/css" href="./assets/css/ie.css" media="screen, projection" />
-	<![endif]-->
-	
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Bootstrap -->
     <link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap.min.css">
@@ -23,9 +16,6 @@
 	
 	<link rel="stylesheet" type="text/css" href="./assets/css/main.css" />
 	<link rel="stylesheet" type="text/css" href="./assets/css/metro.css" />
-	
-	<!--  <script type="text/javascript" src="./assets/js/tooltip.js"></script>-->
-	
 	<title><?php echo \Sky\help\Html::encode($this->getPageTitle()); ?></title>
 	<script type="text/javascript" src="./assets/js/main.js"></script>
 </head>
@@ -59,11 +49,11 @@
 	</div>-->
 	<?php endif; ?>
 	<?php echo $content; ?>
-<div id="footer">
-	Copyright &copy; <?php echo date('Y'); ?> by 软件研究院网络技术组<br/>
-	All Rights Reserved.<br/>
-	Powered by Sky Framework.
-</div><!-- footer -->
+	<div id="footer">
+		Copyright &copy; <?php echo date('Y'); ?> by 软件研究院网络技术组<br/>
+		All Rights Reserved.<br/>
+		Powered by Sky Framework.
+	</div><!-- footer -->
 </div><!-- page -->
 </body>
 </html>

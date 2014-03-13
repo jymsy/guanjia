@@ -37,9 +37,11 @@ $(document).ready(function() {
 		$(this).next().show().get(0).focus();
 	});
 
-
-	$('.form .row input, .form .row textarea, .form .row select, .with-tooltip').not('.no-tooltip, .no-tooltip *').tooltip2({
-		position: "center right",
-		offset: [-2, 10]
+	$('.form .form-control').tooltip({
+		placement:"bottom"
 	});
+//	$('.form .row input, .form .row textarea, .form .row select, .with-tooltip').tooltip({
+////		position: "center right",
+////		offset: [-2, 10]
+//	});
 });

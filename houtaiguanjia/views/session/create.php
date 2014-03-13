@@ -10,23 +10,16 @@
 		<div class="form-group">
 			<?php echo $form->labelEx($model,'server', array('class'=>"col-sm-2 control-label")); ?>
 			<div class="col-xs-3">
-				<?php echo $form->dropDownList($model,'server',$serverlist,array('class'=>"form-control")); ?>
+				<?php echo $form->dropDownList($model,'server',$serverlist,array('class'=>"form-control",'title'=>"在dev还是beta创建session")); ?>
 			</div>
-			<div class="tooltip">在dev还是beta创建session</div>
 			<?php echo $form->error($model,'server'); ?>
 		</div><!-- row -->
 		<div class="form-group">
 			<?php echo $form->labelEx($model,'mac', array('class'=>"col-sm-2 control-label")); ?>
 			<div class="col-xs-4">
-				<?php echo $form->textField($model,'mac',array('size'=>20, 'class'=>"form-control")); ?>
+				<?php echo $form->textField($model,'mac',array('size'=>20, 'class'=>"form-control",'title'=>"必须全部小写，去掉冒号")); ?>
 			</div>
-				<div class="tooltip">
-					电视的mac，必须全部小写，去掉冒号：
-					<ul>
-						<li><code>015c587a0d23</code></li>
-					</ul>
-				</div>
-				<?php echo $form->error($model,'mac'); ?>
+			<?php echo $form->error($model,'mac'); ?>
 		</div>
 		<div class="buttons">
 			<?php echo Sky\help\Html::submitButton('获取mac信息',array('name'=>'submit','class'=>"btn btn-primary")); ?>
@@ -35,7 +28,7 @@
 			<?php endif; ?>
 		</div>
 		<?php if ($model->status===houtaiguanjia\models\Mac::STATUS_FEEDBACK): ?>
-			<table>
+			<table class="table table-condensed">
 				<thead>
 					<tr><th>uid</th><td><?php echo $data['user_id']?></td></tr>
 					<?php echo Sky\help\Html::hiddenField('user_id',$data['user_id'])?>

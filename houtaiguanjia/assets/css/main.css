@@ -322,7 +322,7 @@ div.wide.form .buttons, div.wide.form .hint, div.wide.form .errorMessage
 	padding-left: 110px;
 }
 
-div.form .tooltip
+/*div.form .tooltip
 {
 	display: none;
     background-color:#EFFDFF;
@@ -341,7 +341,7 @@ div.form .tooltip code
 {
 	color: #CA0EE3;
 	font-size:0.9em;
-}
+}*/
 
 div.form.login
 {

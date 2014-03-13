@@ -10,22 +10,22 @@
 	<div class="form-group">
 			<?php echo $form->labelEx($model,'server',array('class'=>"col-sm-2 control-label")); ?>
 			<div class="col-xs-3">
-				<?php echo $form->dropDownList($model,'server',$serverlist, array('class'=>"form-control")); ?>
+				<?php echo $form->dropDownList($model,'server',$serverlist, array(
+						'class'=>"form-control",'title'=>"从dev、beta还是sky的redis查询session")); ?>
 			</div>
-			<div class="tooltip">从dev、beta还是sky的redis查询session</div>
 			<?php echo $form->error($model,'server'); ?>
 	</div>
 	<div class="form-group">
 			<?php echo $form->labelEx($model,'sessionid',array('class'=>"col-sm-2 control-label")); ?>
 			<div class="col-xs-8">
-				<?php echo $form->textField($model,'sessionid',array('size'=>50, 'class'=>"form-control")); ?>
-			</div>
-			<div class="tooltip">
-				sessionId，新框架ssession有两种格式：
-				<ul>
-					<li>正常登陆后获得的session，形如：<code>015c587a0d23c0e24a2c515c80b849bd-forold</code></li>
-					<li>登录失败后客户端组的临时会话，形如：<code>xxxxxxxx:abcdefgh0011</code></li>
-				</ul>
+				<?php echo $form->textField($model,'sessionid',array('size'=>50, 'class'=>"form-control",'title'=>"")); ?>
+				<div class="alert alert-info">
+					sessionId，新框架ssession有两种格式：
+					<ul>
+						<li>正常登陆后获得的session，<br>形如：<code>015c587a0d23c0e24a2c515c80b849bd-forold</code></li>
+						<li>登录失败后客户端组的临时会话，<br>形如：<code>xxxxxxxx:abcdefgh0011</code></li>
+					</ul>
+				</div>
 			</div>
 			<?php echo $form->error($model,'sessionid'); ?>
 		</div><!-- row -->
@@ -36,7 +36,7 @@
 </div>
 
 <?php if($model->status===houtaiguanjia\models\Session::STATUS_SUCCESS):?>
-<table>
+<table class="table table-condensed">
 	<thead>
 		<tr><th>sessionid</th><td><?php echo $data['sessionid']?></td></tr>
 		<tr><th>uid</th><td><?php echo $data['user_id']?></td></tr>

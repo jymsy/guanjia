@@ -1,7 +1,7 @@
 @charset "utf-8";
 /* CSS Document */
 *{ margin:0; padding:0;}
-body{ background:#0C6D37 url(../images/metro_bg.png) repeat center top; overflow:hidden;}
+body{ background:#0C6D37 url(../images/metro_bg.png) repeat center top;}
 
 #metro_box{ width:990px; height:565px; overflow:hidden; margin:0 auto; }
 #metro_box dl dt{ height:35px; line-height:35px;margin-bottom:20px;}

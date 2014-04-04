@@ -33,10 +33,10 @@
 	<?php if(!\Sky\Sky::$app->getUser()->getIsGuest()): ?>
 		<ul id='mytab' class="nav nav-tabs">
 	  		<li><a id="headpage" href="/houtaiguanjia/index.php?_r=default/index">首页</a></li>
-	  		<li><a href="/houtaiguanjia/index.php?_r=session/index">会话管理</a></li>
-	  		<li><a href="/houtaiguanjia/index.php?_r=guide/index">常用网址</a></li>
-	  		<li><a href="/houtaiguanjia/index.php?_r=trace/index">用户追踪</a></li>
-	  		<li><a href="/houtaiguanjia/index.php?_r=process/index">进程管理</a></li>
+	  		<li><a id="tttt" href="/houtaiguanjia/index.php?_r=session/index">会话管理</a></li>
+	  		<li><a id="ttttd" href="/houtaiguanjia/index.php?_r=guide/index">常用网址</a></li>
+	  		<li><a id="tttts" href="/houtaiguanjia/index.php?_r=trace/index">用户追踪</a></li>
+	  		<li><a id="tttta" href="/houtaiguanjia/index.php?_r=process/index">进程管理</a></li>
 		</ul>
 	<!-- <div id="mainmenu">
 		<ul>
@@ -55,5 +55,21 @@
 		Powered by Sky Framework.
 	</div><!-- footer -->
 </div><!-- page -->
+<script type="text/javascript">
+$(function(){
+	var url = window.location.href;
+	var id;
+	$('#mytab a').each(function(){
+		var current = $(this).attr('href');
+		if(url.indexOf(current)>=0)
+		{
+			id=$(this).attr('id');
+		}
+//		alert($(this).attr('href'));
+	});
+// 	alert(id);
+	$('#'+id).attr('id','active');
+});
+</script>
 </body>
 </html>

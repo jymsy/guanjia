@@ -10,6 +10,7 @@ class SessionController extends Controller{
 	private $_normalUser= false;
 	private $_server=array(
 		'dev'=>array('db'=>'db','redis'=>'redis'),
+        'devglobal'=>array('db'=>'db','redis'=>'redis'),
 		'beta'=>array('db'=>'betadb','redis'=>'betaredis'),
 		'sky'=>array('db'=>'skydb','redis'=>'skyredis')
 	);

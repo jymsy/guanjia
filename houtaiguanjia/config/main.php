@@ -41,6 +41,20 @@ $config=array(
 						'persistent' => true,
 						'timeout' => 10
 				),
+                'dbgredis' => array(
+                    'class' => 'Sky\utils\RedisClient',
+                    'masterhost' => '10.135.9.137:6380',
+                    'slavehost' => '10.135.9.137:6380',
+                    'persistent' => true,
+                    'timeout' => 10
+                ),
+                'relgredis' => array(
+                    'class' => 'Sky\utils\RedisClient',
+                    'masterhost' => '10.132.59.105:6379',
+                    'slavehost' => '10.132.59.105:6380',
+                    'persistent' => true,
+                    'timeout' => 10
+                ),
 				'session'=>array(
 					'class'=>'Sky\web\Session',
 				),

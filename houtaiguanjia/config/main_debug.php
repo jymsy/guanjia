@@ -72,6 +72,13 @@ $config=array(
 					array('10.132.58.91',9999),//121.199.45.29
 					array('10.132.59.104',9999),//121.199.45.32
 				),
+                'wolf'=>array(
+                    'dev'=>array('10.135.9.137',3838),
+                    'beta'=>array('10.132.43.14',3839),
+                    'sky'=>array('10.132.59.1',3839),
+                    'tvos'=>array('10.132.43.150',3839),
+                    'dongle'=>array('10.132.10.156',3839),
+                ),
 		),
 		'modules'=>require(__DIR__.DIRECTORY_SEPARATOR.'modules.php'),
 );

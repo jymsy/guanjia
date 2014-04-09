@@ -40,6 +40,10 @@ $(document).ready(function() {
 	$('.form .form-control').tooltip({
 		placement:"bottom"
 	});
+
+//    $("[name='proc_switch']").bootstrapSwitch();
+
+//    $(".proc_switch").bootstrapSwitch();
 //	$('.form .row input, .form .row textarea, .form .row select, .with-tooltip').tooltip({
 ////		position: "center right",
 ////		offset: [-2, 10]

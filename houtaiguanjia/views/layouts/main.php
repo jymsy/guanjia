@@ -1,19 +1,21 @@
 <!DOCTYPE>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="zh-cn">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Bootstrap -->
     <link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap.min.css">
-    <script type="text/javascript" src="./assets/js/jquery.min.js"></script>
-	<script src="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <link href="./assets/css/bootstrap-switch.css" rel="stylesheet">
+    <script type="text/javascript" src="./assets/js/jquery-1.11.0.min.js"></script>
+    <script src="./assets/js/bootstrap-switch.js"></script>
+    <script src="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <!--[if lt IE 9]>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="http://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
-        <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
-	
+
 	<link rel="stylesheet" type="text/css" href="./assets/css/main.css" />
 	<link rel="stylesheet" type="text/css" href="./assets/css/metro.css" />
 	<title><?php echo \Sky\help\Html::encode($this->getPageTitle()); ?></title>
@@ -55,6 +57,7 @@
 		Powered by Sky Framework.
 	</div><!-- footer -->
 </div><!-- page -->
+
 <script type="text/javascript">
 $(function(){
 	var url = window.location.href;

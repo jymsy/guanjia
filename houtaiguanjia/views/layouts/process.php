@@ -6,7 +6,7 @@
                 <?php echo \Sky\help\Html::link('XXXXX',array('process/create'),array('class'=>'list-group-item'));?>
             </div>
         </div>
-        <div class="col-xs-8 col-sm-7">
+        <div class="col-xs-9 col-sm-8">
             <div id="content">
                 <?php echo $content; ?>
             </div><!-- content -->

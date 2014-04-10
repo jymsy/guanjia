@@ -26,27 +26,38 @@ class ProcessController extends \Sky\base\Controller{
     public function actionIndex()
     {
         $model=new Process();
+        $resultMsg=array();
         $list=array('dev'=>'dev','beta'=>'beta','sky'=>'sky','dongle'=>'dongle','tvos'=>'tvos');
-        if (isset($_GET['houtaiguanjia_models_Process']))
+        if (isset($_POST['houtaiguanjia_models_Process']))
         {
-            $model->attributes=$_GET['houtaiguanjia_models_Process'];
-            $result = $this->getProcessInfo($model->attributes['server']);
+            $model->attributes=$_POST['houtaiguanjia_models_Process'];
+            $server=$model->attributes['server'];
+//            if(isset($_POST['start'])){
+//                $resultMsg=$this->startStop($_POST['server'],$_POST['name'],'true');
+//                $server = $_POST['server'];
+//                sleep(2);
+//            }elseif(isset($_POST['stop'])){
+//                $resultMsg=$this->startStop($_POST['server'],$_POST['name'],'false');
+//                $server = $_POST['server'];
+//            }
+
+            var_dump($resultMsg);
+
+            $result = $this->getProcessInfo($server);
             if($result['code']!=500){
                 $model->status = Process::STATUS_SUCCESS;
             }else{
                 $model->status=Process::STATUS_ERROR;
             }
-            $this->render('index',array('model'=>$model,'result'=>$result,'serverlist'=>$list));
+            $this->render('index',array('model'=>$model,'result'=>$result,'serverlist'=>$list,'resultMsg'=>$resultMsg));
             return ;
         }
         $this->render('index',array('model'=>$model,'serverlist'=>$list));
     }
 
-    public function actionStartStop($server,$name,$start)
+    protected function startStop($server,$name,$start)
     {
         $result = array('code'=>500,'msg'=>'param error');
-        $response=Sky::$app->getResponse();
-        $response->format=Response::FORMAT_JSON;
         $host = Sky::$app->params['wolf'][$server];
         $socket = new Socket();
         if(!$socket->connect($host[0],$host[1]))

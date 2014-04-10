@@ -1,6 +1,6 @@
 <h1>查看进程状态</h1>
 <div class="form man">
-    <?php $form=$this->beginWidget('Sky\web\widgets\ActiveForm',array('htmlOptions'=>array('class'=>"form-horizontal"),'method'=>'get')); ?>
+    <?php $form=$this->beginWidget('Sky\web\widgets\ActiveForm',array('htmlOptions'=>array('class'=>"form-horizontal"))); ?>
     <div class="form-group">
         <?php echo $form->labelEx($model,'server',array('class'=>"col-sm-3 control-label")); ?>
         <div class="col-xs-3">
@@ -11,10 +11,10 @@
     <div class="buttons">
         <?php echo Sky\help\Html::submitButton('确定',array('name'=>'submit','class'=>"btn btn-primary")); ?>
     </div>
-    <?php $this->endWidget(); ?>
-</div>
 
-<div id="server" name="<?php echo $model->attributes['server']?>">
+
+    <?php echo Sky\help\Html::hiddenField('server',$model->attributes['server'])?>
+<!--<div id="server" name="--><?php //echo $model->attributes['server']?><!--">-->
 
 </div>
 <?php if($model->status===houtaiguanjia\models\Process::STATUS_SUCCESS):?>
@@ -39,12 +39,14 @@
                 <?php if($procList['status']=='RUNNING'):?>
                     <td><?php echo "进程号:".$procList['pid']." 内存:".$procList['mem']."Kb 运行时间:".$procList['up_time']?></td>
                 <td>
-                    <input name="<?php echo $procList['name'];?>" type="checkbox" checked data-size="small" data-on-color="success" data-off-color="danger"/>
+                    <?php echo Sky\help\Html::hiddenField('action','stop')?>
+                    <?php echo Sky\help\Html::submitButton('停止',array('name'=>$procList['name'],'class'=>"btn btn-danger btn-xs")); ?>
                 </td>
                 <?php else: ?>
                     <td><?php echo "停止时间:".$procList['stop_time']?></td>
                 <td>
-                    <input name="<?php echo $procList['name'];?>" type="checkbox" data-size="small" data-on-color="success" data-off-color="danger"/>
+                    <?php echo Sky\help\Html::hiddenField('action','start')?>
+                    <?php echo Sky\help\Html::submitButton('启动',array('name'=>$procList['name'],'class'=>"btn btn-success btn-xs")); ?>
                 </td>
                 <?php endif;?>
             </tr>
@@ -58,36 +60,35 @@
         <strong>Error!</strong> <?php echo $result['result'];?>
     </div>
 <?php endif;?>
-<div>
-
+<?php $this->endWidget(); ?>
 </div>
-
 <script>
-    $('input:checkbox').bootstrapSwitch();
-    $('input:checkbox').on('switchChange.bootstrapSwitch', function(event, state) {
-        console.log(this.getAttribute('name')); // DOM element
-        var server = $('#server').attr('name');
-        console.log(server);
-//        console.log(event); // jQuery event
-        console.log(state.value); // true | false
+//    $('input:checkbox').bootstrapSwitch();
+//    $('input:checkbox').on('switchChange.bootstrapSwitch', function(event, state) {
+//        //        console.log(event); // jQuery event
+//        //        console.log(state.value); // true | false
+//        //        console.log(this.getAttribute('name')); // DOM element
+//        //        var server = $('#server').attr('name');
+//        //        console.log(server);
+//
+//        $.get('index.php',
+//            {
+//                _r:'process/startstop',
+//                server:$('#server').attr('name'),
+//                name:this.getAttribute('name'),
+//                start:state.value
+//            },function(data){
+//
+////                alert(data.code+data.msg);
+//                if(data.code==200){
+//                    alert("启动成功");
+//                }else{
+//                    alert("启动失败！\n"+data.msg);
+//                }
+//                window.location.reload();
+//            });
+//    });
 
-        $.get('index.php',
-            {
-                _r:'process/startstop',
-                server:server,
-                name:this.getAttribute('name'),
-                start:state.value
-            },function(data){
-
-//                alert(data.code+data.msg);
-                if(data.code!=200){
-
-                }else{
-
-                }
-                window.location.reload();
-            });
-    });
 </script>
 
 

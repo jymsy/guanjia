@@ -9,7 +9,7 @@
 	&nbsp;&nbsp;&nbsp;&nbsp;收集了一些监控用的网址。<br>
 	3.用户追踪<br>
 	&nbsp;&nbsp;&nbsp;&nbsp;通过用户id，来监控该用户对后台的接口访问情况。<br>
-	&nbsp;&nbsp;&nbsp;&nbsp;目前只能在dev上使用。<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;目前只能在dev和sky上使用。<br>
 	4.进程管理<br>
 	&nbsp;&nbsp;&nbsp;&nbsp;为完待续。。。<br>
 	</div>

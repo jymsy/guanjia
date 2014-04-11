@@ -80,6 +80,9 @@ $config=array(
                 'tvos'=>array('10.132.43.150',3839),
                 'dongle'=>array('10.132.10.156',3839),
             ),
+            'redisList'=>array(
+                'dev'=>'dev','beta'=>'beta','sky'=>'sky','dongle'=>'dongle','tvos'=>'tvos'
+            ),
 		),
 		'modules'=>require(__DIR__.DIRECTORY_SEPARATOR.'modules.php'),
 );

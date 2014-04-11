@@ -7,9 +7,9 @@
             <?php echo $form->dropDownList($model,'server',$serverlist,array('class'=>"form-control")); ?>
         </div>
         <?php echo $form->error($model,'server'); ?>
-    </div>
-    <div class="buttons">
-        <?php echo Sky\help\Html::submitButton('确定',array('name'=>'submit','class'=>"btn btn-primary")); ?>
+        <div class="buttons">
+            <?php echo Sky\help\Html::submitButton('确定',array('name'=>'submit','class'=>"btn btn-primary")); ?>
+        </div>
     </div>
 
     <?php echo Sky\help\Html::hiddenField('server',$model->attributes['server'])?>

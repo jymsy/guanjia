@@ -54,12 +54,11 @@
 <script type="text/javascript">
 $(function(){
 	var url = window.location.href;
-	var id;
 	$('#mytab li').each(function(){
         var current = $(this).children('a').attr('href');
         if(url.indexOf(current)>=0)
 		{
-			id=$(this).attr('class','active');
+			$(this).attr('class','active');
 		}
 	});
 });

@@ -41,6 +41,18 @@ $(document).ready(function() {
 		placement:"bottom"
 	});
 
+
+    $(function(){
+        var url = window.location.href;
+        $('.list-group a').each(function(){
+            var current = $(this).attr('href');
+            if(url.indexOf(current)>=0)
+            {
+                $(this).addClass('active')
+            }
+        });
+    });
+
 //    $("[name='proc_switch']").bootstrapSwitch();
 
 //    $(".proc_switch").bootstrapSwitch();

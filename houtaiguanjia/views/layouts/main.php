@@ -34,21 +34,14 @@
 	
 	<?php if(!\Sky\Sky::$app->getUser()->getIsGuest()): ?>
 		<ul id='mytab' class="nav nav-tabs">
-	  		<li><a id="headpage" href="/houtaiguanjia/index.php?_r=default/index">首页</a></li>
-	  		<li><a id="tttt" href="/houtaiguanjia/index.php?_r=session/index">会话管理</a></li>
-	  		<li><a id="ttttd" href="/houtaiguanjia/index.php?_r=guide/index">常用网址</a></li>
-	  		<li><a id="tttts" href="/houtaiguanjia/index.php?_r=trace/index">用户追踪</a></li>
-	  		<li><a id="tttta" href="/houtaiguanjia/index.php?_r=process/index">进程管理</a></li>
+	  		<li><?php echo \Sky\help\Html::link('首页',array('default/index'))?></li>
+	  		<li><?php echo \Sky\help\Html::link('会话管理',array('session/index'))?></li>
+	  		<li><?php echo \Sky\help\Html::link('常用网址',array('guide/index'))?></li>
+	  		<li><?php echo \Sky\help\Html::link('用户追踪',array('trace/index'))?></li>
+	  		<li><?php echo \Sky\help\Html::link('进程管理',array('process/index'))?></li>
+            <li><?php echo \Sky\help\Html::link('计划任务',array('crontab/index'))?></li>
+            <li><?php echo \Sky\help\Html::link('缓存管理',array('cache/index'))?></li>
 		</ul>
-	<!-- <div id="mainmenu">
-		<ul>
-			<li><a href="/houtaiguanjia/index.php?_r=default/index">首页</a></li>
-			<li><a href="/houtaiguanjia/index.php?_r=session/index">会话管理</a></li>
-			<li><a href="/houtaiguanjia/index.php?_r=guide/index">常用网址</a></li>
-			<li><a href="/houtaiguanjia/index.php?_r=trace/index">用户追踪</a></li>
-			<li><a href="/houtaiguanjia/index.php?_r=process/index">进程管理</a></li>
-		</ul>	
-	</div>-->
 	<?php endif; ?>
 	<?php echo $content; ?>
 	<div id="footer">
@@ -62,16 +55,13 @@
 $(function(){
 	var url = window.location.href;
 	var id;
-	$('#mytab a').each(function(){
-		var current = $(this).attr('href');
-		if(url.indexOf(current)>=0)
+	$('#mytab li').each(function(){
+        var current = $(this).children('a').attr('href');
+        if(url.indexOf(current)>=0)
 		{
-			id=$(this).attr('id');
+			id=$(this).attr('class','active');
 		}
-//		alert($(this).attr('href'));
 	});
-// 	alert(id);
-	$('#'+id).attr('id','active');
 });
 </script>
 </body>

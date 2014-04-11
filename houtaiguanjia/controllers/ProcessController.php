@@ -32,16 +32,14 @@ class ProcessController extends \Sky\base\Controller{
         {
             $model->attributes=$_POST['houtaiguanjia_models_Process'];
             $server=$model->attributes['server'];
-//            if(isset($_POST['start'])){
-//                $resultMsg=$this->startStop($_POST['server'],$_POST['name'],'true');
-//                $server = $_POST['server'];
-//                sleep(2);
-//            }elseif(isset($_POST['stop'])){
-//                $resultMsg=$this->startStop($_POST['server'],$_POST['name'],'false');
-//                $server = $_POST['server'];
-//            }
-
-            var_dump($resultMsg);
+            if(isset($_POST['start'])){
+                $resultMsg=$this->startStop($_POST['server'],$_POST['name'],'true');
+                $server = $_POST['server'];
+                sleep(2);
+            }elseif(isset($_POST['stop'])){
+                $resultMsg=$this->startStop($_POST['server'],$_POST['name'],'false');
+                $server = $_POST['server'];
+            }
 
             $result = $this->getProcessInfo($server);
             if($result['code']!=500){
@@ -145,9 +143,9 @@ class ProcessController extends \Sky\base\Controller{
         if($result['status']=='RUNNING'){
             //cmdpid:14020, mem usage:22344 KB, up time:7h 12m 38s
             $ret=preg_match_all('/^cmdpid:(\d+), mem usage:(\d+) KB, up time:(.+)$/',$tempDetailArr[1],$matches);
-            $result['pid']=$matches[1][0];
-            $result['mem']=$matches[2][0];
-            $result['up_time']=$matches[3][0];
+            $result['pid']=empty($matches[1][0])?0:$matches[1][0];
+            $result['mem']=empty($matches[2][0])?0:$matches[2][0];
+            $result['up_time']=empty($matches[3][0])?0:$matches[3][0];
         }else{
             $result['stop_time']=$tempDetailArr[1];
         }

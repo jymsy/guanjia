@@ -10,6 +10,7 @@ use houtaiguanjia\components\BaseModel;
  */
 
 class Process extends BaseModel{
+    const STATUS_PROC_ERROR=4;
     public $server;
 
     public function attributeLabels()

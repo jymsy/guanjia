@@ -12,11 +12,8 @@
         <?php echo Sky\help\Html::submitButton('确定',array('name'=>'submit','class'=>"btn btn-primary")); ?>
     </div>
 
-
     <?php echo Sky\help\Html::hiddenField('server',$model->attributes['server'])?>
-<!--<div id="server" name="--><?php //echo $model->attributes['server']?><!--">-->
-
-</div>
+    <div id="proc_name"></div><div id="action"></div>
 <?php if($model->status===houtaiguanjia\models\Process::STATUS_SUCCESS):?>
     <table class="table table-condensed table-bordered">
         <thead>
@@ -39,14 +36,12 @@
                 <?php if($procList['status']=='RUNNING'):?>
                     <td><?php echo "进程号:".$procList['pid']." 内存:".$procList['mem']."Kb 运行时间:".$procList['up_time']?></td>
                 <td>
-                    <?php echo Sky\help\Html::hiddenField('action','stop')?>
-                    <?php echo Sky\help\Html::submitButton('停止',array('name'=>$procList['name'],'class'=>"btn btn-danger btn-xs")); ?>
+                    <?php echo Sky\help\Html::submitButton('停止',array('id'=>$procList['name'],'name'=>'stop','class'=>"btn btn-danger btn-xs proc")); ?>
                 </td>
                 <?php else: ?>
                     <td><?php echo "停止时间:".$procList['stop_time']?></td>
                 <td>
-                    <?php echo Sky\help\Html::hiddenField('action','start')?>
-                    <?php echo Sky\help\Html::submitButton('启动',array('name'=>$procList['name'],'class'=>"btn btn-success btn-xs")); ?>
+                    <?php echo Sky\help\Html::submitButton('启动',array('id'=>$procList['name'],'name'=>'start','class'=>"btn btn-success btn-xs proc")); ?>
                 </td>
                 <?php endif;?>
             </tr>
@@ -60,35 +55,23 @@
         <strong>Error!</strong> <?php echo $result['result'];?>
     </div>
 <?php endif;?>
+    <?php if(isset($resultMsg['code']) && $resultMsg['code']==500): ?>
+        <div class="alert alert-danger alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <strong>Error!</strong> <?php echo $resultMsg['msg'];?>
+        </div>
+    <?php endif;?>
 <?php $this->endWidget(); ?>
 </div>
 <script>
-//    $('input:checkbox').bootstrapSwitch();
-//    $('input:checkbox').on('switchChange.bootstrapSwitch', function(event, state) {
-//        //        console.log(event); // jQuery event
-//        //        console.log(state.value); // true | false
-//        //        console.log(this.getAttribute('name')); // DOM element
-//        //        var server = $('#server').attr('name');
-//        //        console.log(server);
-//
-//        $.get('index.php',
-//            {
-//                _r:'process/startstop',
-//                server:$('#server').attr('name'),
-//                name:this.getAttribute('name'),
-//                start:state.value
-//            },function(data){
-//
-////                alert(data.code+data.msg);
-//                if(data.code==200){
-//                    alert("启动成功");
-//                }else{
-//                    alert("启动失败！\n"+data.msg);
-//                }
-//                window.location.reload();
-//            });
-//    });
+       $("form").submit(function(event){
 
+           $('.proc').attr('disabled','disabled');
+       });
+       $('.proc').click(function(){
+           $('#proc_name').html('<input type="hidden" value="'+$(this).attr('id')+'" name="name">');
+           $('#action').html('<input type="hidden" value="" name="'+$(this).attr('name')+'">');
+       });
 </script>
 
 

@@ -26,6 +26,7 @@ class Socket{
 		}
 		
 		socket_set_option($this->_socket,SOL_SOCKET,SO_SNDTIMEO,array("sec"=>$this->timeout, "usec"=>0));
+        socket_set_option($this->_socket,SOL_SOCKET,SO_RCVTIMEO,array("sec"=>$this->timeout, "usec"=>0));
 		
 		$con=@socket_connect($this->_socket ,$server,$port);
 		if($con===false){

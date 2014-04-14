@@ -27,6 +27,29 @@ use Sky\Sky;
 /**
  * PHPMailer - PHP email creation and transport class.
  * PHP Version 5.0.0
+ *
+ * 配置：
+ *         'mail' => array(
+ *              'class' => 'Sky\utils\mail\PHPMailer',
+ *              'exceptions' => true,
+ *              'CharSet' => 'UTF-8',
+ *              'Host' => 'smtp.163.com',
+ *              'SMTPAuth' => true,
+ *              'Port' => 25,
+ *              'Username' => 'skysrt@163.com',
+ *              'Password' => 'skysrt123'
+ *         ),
+ *
+ * 使用：
+ * $mail = Sky::$app->mail;
+ * $mail->isSMTP();
+ * $mail->addAddress('zhangzhenhui@skyworth.com');
+ * $mail->From = 'jymcron@163.com';
+ * $mail->FromName = 'Wolf';
+ * $mail->Subject = "wolf server is stopped.";
+ * $mail->Body = 'body';
+ * $mail->send();
+ *
  * @package PHPMailer
  * @author Marcus Bointon (coolbru) <phpmailer@synchromedia.co.uk>
  * @author Jim Jagielski (jimjag) <jimjag@gmail.com>

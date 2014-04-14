@@ -29,7 +29,6 @@ class UrlManager extends Component{
 	 */
 	public $routeVar='_r';
 	public $sessVar='_s';
-// 	public $newUrl='_new';
 	public $responseType='responsetype';
 	private $_urlFormat=self::GET_FORMAT;
 	private $_baseUrl;
@@ -41,7 +40,7 @@ class UrlManager extends Component{
 	/**
 	 * @var boolean 是否将GET参数添加到路径信息。默认为true。
 	 * 这个属性只有在{@link urlFormat} 为 'path'的时候有效，并且主要用在创建URL时。
-	 * 当位true的时候，GET参数将被添加到路径信息中用'/'分割。
+	 * 当为true的时候，GET参数将被添加到路径信息中用'/'分割。
 	 * 如果为false，GET参数将使用查询字符串的形式。
 	 */
 	public $appendParams=true;
@@ -91,9 +90,10 @@ class UrlManager extends Component{
 	
 	/**
 	 * 设置URL格式
-	 * @param string $value URL格式。他必须是'path' 或 'get'.
+	 * @param string $value URL格式。他必须是 'path' 或 'get'.
+     * @throws \Exception 如果UrlFormat既不是'path' 也不是 'get'
 	 */
-	public function setUrlFormat($value){
+    public function setUrlFormat($value){
 		if($value===self::PATH_FORMAT || $value===self::GET_FORMAT)
 			$this->_urlFormat=$value;
 		else
@@ -109,7 +109,6 @@ class UrlManager extends Component{
 		if($this->getUrlFormat()===self::PATH_FORMAT){
 			
 			$pathInfo=$request->getPathInfo();
-
 			if($this->urlSuffix!=='' && substr($pathInfo,-strlen($this->urlSuffix))===$this->urlSuffix)
 				return substr($pathInfo,0,-strlen($this->urlSuffix));
 			
@@ -192,8 +191,7 @@ class UrlManager extends Component{
 	 * @param array $params GET参数列表
 	 * @param string $equal 参数名和参数值之间的分隔符
 	 * @param string $ampersand 分割name-value对的字符。
-	 * @param string $key this is used internally.
-	 * @return string 创建的路径信息
+     * @return array
 	 */
 	public function createPathInfo($params,$equal,$ampersand){
 		$pairs = array();
@@ -221,19 +219,6 @@ class UrlManager extends Component{
 		}
 	}
 	
-	/**
-	 * 从路径中移除URL后缀。
-	 * @param string $pathInfo URL中的路径信息。
-	 * @return string 移除URL后缀的路径信息。
-	 */
-	public function removeUrlSuffix($pathInfo){
-// 		if($urlSuffix!=='' && substr($pathInfo,-strlen($urlSuffix))===$urlSuffix)
-// 			return substr($pathInfo,0,-strlen($urlSuffix));
-// 		else
-// 			return $pathInfo;
-		
-	}
-
 	/**
 	 * @param boolean $useParamName
 	 */

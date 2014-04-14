@@ -22,6 +22,9 @@ use Sky\help\Html;
  * 查看 {@link error} 来获取详细的错误信息
  * @property string $extensionName {@link name}的文件扩展名.扩展名不包括"."，
  * 如果{@link name}没有扩展名的话返回空字符。
+ *
+ * $file = UploadFile::getInstanceByName("filename");
+ * $file->saveAs("/data/www/ttt.jpg");
  * 
  * @author Jiangyumeng
  *

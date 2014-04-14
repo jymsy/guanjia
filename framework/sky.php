@@ -3,7 +3,7 @@ namespace Sky;
 /**
  * Sky bootstrap file.
  */
-require(dirname(__FILE__).'/SkyBase.php');
+require(__DIR__.'/SkyBase.php');
 /**
  * sky是一个服务于整个框架辅助类。 
  * 它封装了SkyBase由SkyBase提供具体功能实现。 
@@ -13,5 +13,10 @@ require(dirname(__FILE__).'/SkyBase.php');
  */
 class Sky extends \Sky\SkyBase
 {
-	
+    /**
+     * @var \base\components\TianciApplication
+     */
+    public static $app;
 }
+spl_autoload_register(array('\Sky\Sky','autoload'));
+require(SKY_PATH.'/base/Interfaces.php');

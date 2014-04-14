@@ -12,7 +12,7 @@ defined('SKY_BEGIN_TIME') or define('SKY_BEGIN_TIME', microtime(true));
 /**
  * 定义Sky Framework的安装目录
  */
-defined('SKY_PATH') or define('SKY_PATH', dirname(__FILE__));
+defined('SKY_PATH') or define('SKY_PATH', __DIR__);
 /**
  * 定义Framework是否要捕获错误，默认为true
 */
@@ -62,6 +62,7 @@ class SkyBase
 	
 	/**
 	 * 创建一个应用程序实例
+     * @param string $class 应用类名
 	 * @param mixed $config 应用程序配置。
 	 * 如果是string的话，则是配置文件的路径；
 	 * 如果是数组的话，则是配置文件本身。
@@ -69,8 +70,9 @@ class SkyBase
 	 * 它应该指向应用程序的根路径。
 	 * @return Application
 	 */
-	public static function createApplication($config=null){
-		return new \Sky\base\Application($config);
+	public static function createApplication($class,$config=null){
+//		return new \Sky\base\Application($config);
+        return new $class($config);
 	}
 	
 	/**
@@ -95,7 +97,7 @@ class SkyBase
 	 * @return Application
 	 */
 	public static function app(){
-		return self::$app;
+		return static::$app;
 	}
 	
 	/**
@@ -109,8 +111,8 @@ class SkyBase
 	 * @throws \Exception 如果多个应用程序实例被注册的话。
 	 */
 	public static function setApplication($app){
-		if(self::$app===null || $app===null)
-			self::$app=$app;
+		if(static::$app===null || $app===null)
+            static::$app=$app;
 		else
 			throw new \Exception('application can only be created once.');
 	}
@@ -194,10 +196,10 @@ class SkyBase
 	 */
 	public static function beginXProfile($flag=0,$options=array()){
 // 		if(SKY_DEBUG)
-		if(self::$app->enableProf && mt_rand(1, self::$app->profProbability) == 1)
+		if(static::$app->enableProf && mt_rand(1, static::$app->profProbability) == 1)
 		{
 			xhprof_enable($flag,$options);
-			self::$app->beginXprof=true;
+            static::$app->beginXprof=true;
 		}
 	}
 	
@@ -207,8 +209,8 @@ class SkyBase
 	 * @return string 保存的路径
 	 */
 	public static function endXProfile($type){
-		if(/*SKY_DEBUG && */self::$app->beginXprof){
-			self::$app->beginXprof=false;
+		if(/*SKY_DEBUG && */static::$app->beginXprof){
+            static::$app->beginXprof=false;
 			$xhprof_data = xhprof_disable();
 			include_once SKY_PATH.'/logging/xhprof_lib/utils/xhprof_lib.php';
 			include_once SKY_PATH.'/logging/xhprof_lib/utils/xhprof_runs.php';
@@ -314,12 +316,12 @@ class SkyBase
 			$rootPath=substr($namespace,0,$pos);
 			if(isset(self::$_paths[$rootPath])){
 				return self::$_paths[$namespace]=SKY_PATH;
-			}else if(self::$app->findModule($rootPath)!==false){
-// 				return self::$_paths[$namespace]=self::$app->basePath;
-// 				self::$app->getModule($rootPath);
+			}else if(static::$app->findModule($rootPath)!==false){
+// 				return self::$_paths[$namespace]=static::$app->basePath;
+// 				static::$app->getModule($rootPath);
 					return self::$_paths[$namespace]=self::$_paths[$rootPath.'\\'.ucfirst($rootPath).'Module'];
 			}else{
-				return self::$_paths[$namespace]=self::$app->basePath;
+				return self::$_paths[$namespace]=static::$app->basePath;
 			}
 		}
 		return false;
@@ -373,5 +375,3 @@ class SkyBase
 		return true;
 	}
 }
-spl_autoload_register(array('Sky\SkyBase','autoload'));
-require(SKY_PATH.'/base/Interfaces.php');

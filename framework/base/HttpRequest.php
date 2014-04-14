@@ -3,7 +3,7 @@ namespace Sky\base;
 
 use Sky\Sky;
 /**
- * HttpRequest i是被@link Sky\web\WebApplication}默认加载的组件，
+ * HttpRequest 是被{@link Sky\web\WebApplication}默认加载的组件，
  * 可以通过{@link Sky\web\WebApplication::getRequest()}访问
  * 
  * @property string $userHostAddress 用户IP地址

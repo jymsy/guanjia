@@ -111,6 +111,7 @@ class Controller extends BaseController{
 	 * 将会创建一个基于指定过滤规则的过滤器链，action将稍后被执行。
 	 * @param Action $action 要执行的action。
 	 * @param array $filters 应用到action的过滤器列表。
+     * @return mixed
 	 * @see filters
 	 * @see createAction
 	 * @see runAction
@@ -133,7 +134,6 @@ class Controller extends BaseController{
 	 */
 	public function runAction($action){
 		$this->_action=$action;
-// 		\Sky\Sky::log($this->_action->id);
 		$result=null;
 		if($this->beforeAction($action))
 		{
@@ -182,6 +182,7 @@ class Controller extends BaseController{
 	 * 当请求的参数不满足要求的时候该方法被调用
 	 * 默认情况下会抛出HTTP 400 异常
 	 * @param Action $action 要执行的action。
+     * @throws \Sky\base\HttpException
 	 */
 	public function invalidActionParams($action){
 		throw new \Sky\base\HttpException(400,'Your request param is invalid.');
@@ -203,8 +204,9 @@ class Controller extends BaseController{
 	 * 可以是inline action或webservice action
 	 * @param string $actionID action的ID。如果为空的话{@link defaultAction default action}将会被使用。
 	 * @return Action action的实例。如果不存在的话返回空。
+     * @throws \Exception
 	 */
-	public function createAction($actionID){
+    public function createAction($actionID){
 
 		if($actionID==='')
 			$actionID=$this->defaultAction;
@@ -259,7 +261,7 @@ class Controller extends BaseController{
 			}else
 				return $controller[0]->$actionName();
 		}else{
-			throw new \Sky\base\HttpException(404,'unable to reslve route');
+			throw new \Sky\base\HttpException(404,'unable to reslove route');
 		}
 	}
 	

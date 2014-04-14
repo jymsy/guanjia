@@ -315,6 +315,65 @@ class RedisClient extends Component{
 		return $return;
 	}
 	
+	//+++-------------------------集合操作-------------------------+++//
+	
+	/**
+	 * 将value写入set集合 如果value存在 不写入 返回false
+	 * 如果是有序集合则根据score值更新该元素的顺序
+	 * @param $set string 集合名
+	 * @param $value mixed 值
+	 * @param $stype int 集合类型 0:无序集合 1:有序集和 默认0
+	 * @param $score int 元素排序值
+	 * @return 有序集添加成功返回1，否则0;无序集添加的成员个数。
+	 */
+	public function setAdd($set,$value=null,$stype=0,$score=null)
+	{
+		$return = null;
+	
+		if ($stype && $score !== null) {
+			$return =  $this->getClient()->zAdd($set, $score, $value);
+		} else {
+			$return =  $this->getClient()->sAdd($set, $value);
+		}
+	
+		return $return;
+	}
+	
+	/**
+	 * ***只针对有序集合操作
+	 * 返回有序集 set 中，所有 score 值介于 start 和 end 之间(包括等于 start 或 end )的成员。
+	 * @param $set string 集合名
+	 * @param $start int|string 最小值
+	 * @param $end int|string 最大值
+	 * @param $score bool 元素排序值 false:返回数据不带score true:返回数据带score 默认false 
+	 * @return array
+	 */
+	public function setRangeByScore($set,$start,$end,$score=false)
+	{
+		$return = null;
+	
+		if ($score) {
+			$return = $this->getClient(false)->zRangeByScore($set, $start, $end, array('withscores' => TRUE));
+		} else {
+			$return = $this->getClient(false)->zRangeByScore($set, $start, $end);
+		}
+	
+		return $return;
+	}
+	
+	/**
+	 * ***只针对有序集合操作
+	 * 删除set中score从start到end的所有元素
+	 * @param $set string 集合名
+	 * @param $start  double or "+inf" or "-inf" string 开始score
+	 * @param $end  double or "+inf" or "-inf" string 结束score
+	 * @return 从集合中删除的元素个数
+	 */
+	public function setDeleteRange($set,$start,$end)
+	{
+		return $this->getClient()->zRemRangeByScore($set, $start, $end);
+	}
+	
 	/**
 	 * 判断某个key是否存在
 	 * @param $key string 要查询的key名

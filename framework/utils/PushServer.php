@@ -10,7 +10,7 @@ use Sky\Sky;
 class PushServer{
 	public static $cmd=1000;
 	public static $svctype=102;
-	public static $ver="1.0";
+	public static $ver="2.0";
 
 	/**
 	 * 获取push服务器的地址

@@ -2,6 +2,8 @@
 namespace Sky\web;
 
 use Sky\base\Application;
+use Sky\Sky;
+
 /**
  * @property string $controllerPath 包含controller 类文件的目录。默认是'controllers'.
  * @property Controller $controller 当前的Controller。
@@ -88,7 +90,7 @@ class WebApplication extends Application{
 			$controller->init();
 			return $controller->run($actionID);
 		}else
-			throw new \Sky\base\HttpException(404,'unable to reslve route');
+			throw new \Sky\base\HttpException(404,'unable to reslove route');
 	}
 	
 	/**
@@ -106,9 +108,8 @@ class WebApplication extends Application{
 			$owner=$this;
 		if(($route=trim($route,'/'))==='')
 			$route=$owner->defaultController;
-		// 		\Sky\Sky::log($route);
 		$route.='/';
-		// 		echo $route;
+
 		if(($pos=strpos($route,'/'))!==false){
 				
 			$id=substr($route,0,$pos);
@@ -123,19 +124,15 @@ class WebApplication extends Application{
 				if(($module=$owner->getModule($id))!==null)
 					return $this->createController($route,$module,$id);
 				$basePath=$owner->getControllerPath();
-				// 				\Sky\Sky::log($basePath);
 			}
 			if(($pos=strrpos($id, '/'))!==false)
 				$id=substr($id, $pos+1);
 			$className=ucfirst($id).'Controller';
 	
 			$classFile=$basePath.DIRECTORY_SEPARATOR.$className.'.php';
-			// 			\Sky\Sky::log($classFile);
 			$controllerNamespace=$owner->name.'\\controllers\\'.$className;
-			// 			\Sky\Sky::log($controllerNamespace);
 			if(is_file($classFile)){
 				$actionID=$this->parseActionParams($route);
-				// 				\Sky\Sky::log($controllerNamespace);
 				if(!class_exists($controllerNamespace,false)){
 					require($classFile);
 				}
@@ -157,7 +154,6 @@ class WebApplication extends Application{
 	 */
 	protected function parseActionParams($pathInfo){
 		$manager=$this->getUrlManager();
-	
 		if(($pos=strpos($pathInfo,'/'))!==false){
 			$manager->parsePathInfo((string)substr($pathInfo,$pos+1));
 			$actionID=substr($pathInfo,0,$pos);
@@ -173,7 +169,7 @@ class WebApplication extends Application{
 	 *
 	 */
 	public function setGlobalVar(){
-		$params=\Sky\Sky::$app->params;
+		$params=Sky::$app->params;
 		if(is_array($params)){
 			foreach($params as $k=>$v){
 				if (is_string($v)) {

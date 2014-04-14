@@ -472,6 +472,22 @@ div.form.man pre.results span.error
 	padding: 1px;
 }
 
+table.cache
+{
+    table-layout:fixed;
+}
+
+table.cache th
+{
+    width:10%;
+    text-align:center;
+}
+
+table.cache td
+{
+    WORD-WRAP: break-word;
+}
+
 /*#fancybox-inner .error
 {
 	color: red;

@@ -159,18 +159,18 @@ class RedisClient extends Component{
 // 			$this->_client->setOption($key, $value);
 // 		}
 // 	}
-	
-	/**
-	 * 写入key-value
-	 * @param $key string 要存储的key名
-	 * @param $value mixed 要存储的值
-	 * 	@param $time float 过期时间(S)
-	 * @param $type int 写入方式 0:不添加到现有值后面 1:添加到现有值的后面 默认0
-	 * @param $repeat int 0:不判断重复 1:判断重复
-	 * @param $old int 1:返回旧的value 默认0
-	 * @return $return bool true:成功 flase:失败
-	 */
-	public function set($key,$value,$time=0,$type=0,$repeat=0,$old=0)
+
+    /**
+     * 写入key-value
+     * @param $key string 要存储的key名
+     * @param $value mixed 要存储的值
+     * @param int $time 过期时间(S)
+     * @param int $type 写入方式 0:不添加到现有值后面 1:添加到现有值的后面 默认0
+     * @param int $repeat 0:不判断重复 1:判断重复
+     * @param int $old 1:返回旧的value 默认0
+     * @return bool|int|string
+     */
+    public function set($key,$value,$time=0,$type=0,$repeat=0,$old=0)
 	{
 		if ($type) {
 			return $this->getClient()->append($key, $value);
@@ -189,14 +189,14 @@ class RedisClient extends Component{
 			}
 		}
 	}
-	
-	/**
-	 * 获取某个key值 如果指定了start end 则返回key值的start跟end之间的字符
-	 * @param $key string/array 要获取的key或者key数组
-	 * @param $start int 字符串开始index
-	 * @param $end int 字符串结束index
-	 * @return $return mixed 如果key存在则返回key值 如果不存在返回false
-	 */
+
+    /**
+     * 获取某个key值 如果指定了start end 则返回key值的start跟end之间的字符
+     * @param $key string/array 要获取的key或者key数组
+     * @param $start int 字符串开始index
+     * @param $end int 字符串结束index
+     * @return mixed 如果key存在则返回key值 如果不存在返回false
+     */
 	public function get($key=null,$start=null,$end=null)
 	{
 		$return = null;
@@ -212,13 +212,14 @@ class RedisClient extends Component{
 	
 		return $return;
 	}
-	
-	/**
-	 * 将key->value写入hash表中
-	 * @param $hash string 哈希表名
-	 * @param $data array 要写入的数据 array('key'=>'value')
-	 */
-	public function hashSet($hash,$data)
+
+    /**
+     * 将key->value写入hash表中
+     * @param $hash string 哈希表名
+     * @param $data array 要写入的数据 array('key'=>'value')
+     * @return bool
+     */
+    public function hashSet($hash,$data)
 	{
 		if (is_array($data) && !empty($data)) {
 			return $this->getClient()->hMset($hash, $data);
@@ -264,14 +265,15 @@ class RedisClient extends Component{
 		return $return;
 	}
 	
-	/**
-	 * 入队列
-	 * @param $list string 队列名
-	 * @param $value mixed 入队元素值
-	 * @param $deriction int 0:数据入队列头(左) 1:数据入队列尾(右) 默认为0
-	 * @param $repeat int 判断value是否存在  0:不判断存在 1:判断存在 如果value存在则不入队列
-	 */
-	public function listPush($list,$value,$direction=0,$repeat=0)
+    /**
+     * 入队列
+     * @param $list string 队列名
+     * @param $value mixed 入队元素值
+     * @param int $direction 0:数据入队列头(左) 1:数据入队列尾(右) 默认为0
+     * @param int $repeat 判断value是否存在  0:不判断存在 1:判断存在 如果value存在则不入队列
+     * @return bool|int|null
+     */
+    public function listPush($list,$value,$direction=0,$repeat=0)
 	{
 		$return = null;
 	
@@ -296,13 +298,14 @@ class RedisClient extends Component{
 		return $return;
 	}
 	
-	/**
-	 * 获取list队列的index位置的元素值
-	 * @param $list string 队列名
-	 * @param $index int 队列元素开始位置 默认0
-	 * @param $end int 队列元素结束位置 $index=0,$end=-1:返回队列所有元素
-	 */
-	public function listGet($list,$index=0,$end=null)
+    /**
+     * 获取list队列的index位置的元素值
+     * @param $list string 队列名
+     * @param int $index 队列元素开始位置 默认0
+     * @param int $end 队列元素结束位置 $index=0,$end=-1:返回队列所有元素
+     * @return array|null|void
+     */
+    public function listGet($list,$index=0,$end=null)
 	{
 		$return = null;
 	
@@ -383,13 +386,33 @@ class RedisClient extends Component{
 	{
 		return $this->getClient(false)->exists($key);
 	}
-	
-	/**
-	 * 开始进入事务操作
-	 * @param $type 事务类型,0 默认，1 pipeline
-	 * @return object 事务对象
-	 */
-	public function tranStart($pipe=true)
+
+    /**
+     * 返回指定key的类型
+     * @param $key string 要查询的key名
+     * @return int
+     */
+    public function type($key)
+    {
+        return $this->getClient(false)->type($key);
+    }
+
+    /**
+     * 查询某个key的生存时间(s)
+     * @param $key string 要查询的key名
+     * @return int  如果key没有生存时间返回-1，如果key不存在返回-2.
+     */
+    public function ttl($key)
+    {
+        return $this->getClient(false)->ttl($key);
+    }
+
+    /**
+     * 开始进入事务操作
+     * @param bool $pipe pipeline
+     * @return \Redis
+     */
+    public function tranStart($pipe=true)
 	{
 		if ($pipe) {
 			return $this->_transcation=$this->getClient()->multi(\Redis::PIPELINE);
@@ -397,18 +420,18 @@ class RedisClient extends Component{
 			return $this->_transcation=$this->getClient()->multi();
 	}
 	
-	/**
-	 * 提交完成事务
-	 * @param $return bool 事务执行成功 提交操作
-	 */
-	public function tranCommit()
+    /**
+     * 提交完成事务
+     * @return bool 事务执行成功 提交操作
+     */
+    public function tranCommit()
 	{
 		return $this->_transcation->exec();
 	}
 	
 	/**
 	 * 取消事务，放弃执行事务块内的所有命令。
-	 * @param $return bool 
+	 * @return $return bool
 	 */
 	public function tranRollback()
 	{

@@ -55,7 +55,9 @@
 $(function(){
 	var url = window.location.href;
 	$('#mytab li').each(function(){
-        var current = $(this).children('a').attr('href');
+        var current_total = $(this).children('a').attr('href');
+        var pos = current_total.lastIndexOf('/index');
+        var current = current_total.substring(0,pos);
         if(url.indexOf(current)>=0)
 		{
 			$(this).attr('class','active');

@@ -41,10 +41,10 @@ $config=array(
 						'persistent' => true,
 						'timeout' => 10
 				),
-                'dbredis' => array(
+                'dgredis' => array(
                     'class' => 'Sky\utils\RedisClient',
-                    'masterhost' => '10.135.9.137:6380',
-                    'slavehost' => '10.135.9.137:6380',
+                    'masterhost' => '10.132.10.156:6379',
+                    'slavehost' => '10.132.10.156:6379',
                     'persistent' => true,
                     'timeout' => 10
                 ),
@@ -88,7 +88,7 @@ $config=array(
                     'dongle'=>array('10.132.10.156',3839),
                 ),
                 'redisList'=>array(
-                    'redis'=>'dev','betaredis'=>'beta','skyredis'=>'sky',
+                    'redis'=>'dev','betaredis'=>'beta','skyredis'=>'sky','dgredis'=>'dongle',
                 ),
 		),
 		'modules'=>require(__DIR__.DIRECTORY_SEPARATOR.'modules.php'),

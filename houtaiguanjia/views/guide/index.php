@@ -47,41 +47,41 @@
         		<img src="./assets/images/rrmj.png" width="240" height="120" alt="">
         	</a><span><a href="#">release rabbitMQ监控</a></span>
         </li>
-        <!--<li id="logo_010">
-        	<a href="http://www.tudou.com">
-        		<img src="images/logo_010.png" width="240" height="120" alt="">
-        	</a><span><a href="#">土豆网</a></span>
+        <li id="logo_010">
+        	<a href="http://121.199.33.2:9200/_plugin/head/" target="_blank">
+        		<img src="./assets/images/es.png" width="240" height="120" alt="">
+        	</a><span><a href="#">beta es</a></span>
         </li>
         <li id="logo_011">
-        	<a href="http://www.renren.com">
-        		<img src="images/logo_011.png" width="240" height="120" alt="">
-        	</a><span><a href="#">人人网</a></span>
+        	<a href="http://121.199.4.55/_plugin/head/" target="_blank">
+        		<img src="./assets/images/tvos_es.png" width="240" height="120" alt="">
+        	</a><span><a href="#">tvos es</a></span>
         </li>
-        <li class="four" id="logo_012">
-        	<a href="http://s.click.taobao.com/t_11?e=%2BtSC5ziSlQIKXTum23VHLUx2Mi9BvFxTCg7CN9kKD8HJdox0eUoImgi5Ng%3D%3D&p=mm_14033530_3168968_10561464">
-        		<img src="images/logo_012.png" width="240" height="120" alt="">
-        	</a><span><a href="#">凡客诚品</a></span>
-        </li>
-        <li class="one" id="logo_013">
-        	<a href="http://www.people.com.cn">
-        		<img src="images/logo_013.png" width="240" height="120" alt="">
-        	</a><span><a href="#">人民网</a></span>
-        </li>
-        <li id="logo_014">
-        	<a href="http://www.cntv.cn">
-        		<img src="images/logo_014.png" width="240" height="120" alt="">
-        	</a><span><a href="#">中国网络电视台</a></span>
-        </li>
-        <li id="logo_015">
-        	<a href="http://sohu.com">
-        		<img src="images/logo_015.png" width="240" height="120" alt="">
-        	</a><span><a href="#">搜狐网</a></span>
-        </li>
-        <li class="four" id="logo_016">
-        	<a href="http://www.163.com">
-        		<img src="images/logo_016.png" width="240" height="120" alt="">
-        	</a><span><a href="#">网易</a></span>
-        </li>-->
+          <li class="four" id="logo_012">
+              <a href="http://42.121.14.43/_plugin/head/" target="_blank">
+                  <img src="./assets/images/sky_es.png" width="240" height="120" alt="">
+              </a><span><a href="#">sky es</a></span>
+          </li>
+          <!--<li class="one" id="logo_013">
+              <a href="http://www.people.com.cn">
+                  <img src="images/logo_013.png" width="240" height="120" alt="">
+              </a><span><a href="#">人民网</a></span>
+          </li>
+          <li id="logo_014">
+              <a href="http://www.cntv.cn">
+                  <img src="images/logo_014.png" width="240" height="120" alt="">
+              </a><span><a href="#">中国网络电视台</a></span>
+          </li>
+          <li id="logo_015">
+              <a href="http://sohu.com">
+                  <img src="images/logo_015.png" width="240" height="120" alt="">
+              </a><span><a href="#">搜狐网</a></span>
+          </li>
+          <li class="four" id="logo_016">
+              <a href="http://www.163.com">
+                  <img src="images/logo_016.png" width="240" height="120" alt="">
+              </a><span><a href="#">网易</a></span>
+          </li>-->
       </ul>
     </dd>
     </dl>

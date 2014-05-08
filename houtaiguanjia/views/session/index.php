@@ -51,6 +51,7 @@
 		<tr><th>barcode</th><td><?php echo $data['barcode']?></td></tr>
 		<tr><th>screen_size</th><td><?php echo $data['screen_size']?></td></tr>
 		<tr><th>system_version</th><td><?php echo $data['system_version']?></td></tr>
+        <tr><th>tc_version</th><td><?php echo $data['tc_version']?></td></tr>
 	</thead>
 </table>
 <?php endif;?>

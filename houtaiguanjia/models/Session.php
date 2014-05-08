@@ -47,7 +47,7 @@ class Session extends BaseModel{
 	{
 		$db = Sky::$app->getComponent($server);
 		$tvinfo=$db->createCommand(
-				'select dev_mac,chip,model,platform,barcode,screen_size,system_version
+				'select dev_mac,chip,model,platform,barcode,screen_size,system_version,tc_version
 					from `skyg_base`.`base_device`
 					where dev_mac=:mac',
 				array(

@@ -55,6 +55,20 @@ $config=array(
                     'persistent' => true,
                     'timeout' => 10
                 ),
+                'devmem'=>array(
+                    'class' => 'Sky\caching\MemCache',
+                    'keyPrefix'=>'',
+                    'hashKey'=>false,
+                    'serializer'=>false,
+                    'servers' => '127.0.0.1:11211',
+                ),
+                'skymem'=>array(
+                    'class' => 'Sky\caching\MemCache',
+                    'keyPrefix'=>'',
+                    'hashKey'=>false,
+                    'serializer'=>false,
+                    'servers' => '10.132.59.105:11211',
+                ),
 				'session'=>array(
 						'class'=>'Sky\web\Session',
 				),
@@ -82,6 +96,9 @@ $config=array(
             ),
             'redisList'=>array(
                 'dev'=>'dev','beta'=>'beta','sky'=>'sky','dongle'=>'dongle','tvos'=>'tvos'
+            ),
+            'memList'=>array(
+                'devmem'=>'dev','skymem'=>'sky',
             ),
 		),
 		'modules'=>require(__DIR__.DIRECTORY_SEPARATOR.'modules.php'),

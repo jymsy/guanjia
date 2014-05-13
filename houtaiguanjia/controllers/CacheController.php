@@ -45,7 +45,42 @@ class CacheController extends Controller{
     public function actionMemcache()
     {
         $model=new Cache();
-        $this->render('index',array('model'=>$model,'serverlist'=>Sky::$app->params['redisList']));
+        if (isset($_POST['houtaiguanjia_models_Cache'])) {
+            $model->attributes = $_POST['houtaiguanjia_models_Cache'];
+            if ($model->validate()) {
+                $result = $this->getMemKeyInfo($model->attributes['server'],$model->attributes['key']);
+                if($result['code']==500){
+                    $model->status=Cache::STATUS_ERROR;
+                }else{
+                    $model->status=Cache::STATUS_SUCCESS;;
+                }
+                $this->render('memcache',array('model'=>$model,'serverlist'=>Sky::$app->params['memList'],'result'=>$result));
+                return '';
+            }
+        }
+        $this->render('memcache',array('model'=>$model,'serverlist'=>Sky::$app->params['memList']));
+    }
+
+    public function actionDeleteMem($server, $key)
+    {
+        $response = Sky::$app->getResponse();
+        $response->format=Response::FORMAT_JSON;
+        $result = array();
+        $cache=Sky::$app->getComponent($server);
+        if($cache!=null){
+            $ret=$cache->delete($key);
+            if($ret == false){
+                $result['code']=500;
+                $result['msg']='删除 '.$key.' 失败';
+            }else{
+                $result['code']=200;
+                $result['msg']='删除 '.$key.' 成功';
+            }
+        }else{
+            $result['code']=500;
+            $result['msg']='memcached 配置错误';
+        }
+        return $result;
     }
 
     public function actionDeleteRedis($server, $key)
@@ -70,6 +105,27 @@ class CacheController extends Controller{
         return $result;
     }
 
+    protected function getMemKeyInfo($server,$key)
+    {
+        $result = array();
+        $cache=Sky::$app->getComponent($server);
+        if($cache!=null){
+            $ret=$cache->get($key);
+            if($ret == false){
+                $result['code']=500;
+                $result['msg']='Key:'.$key.' 不存在';
+                return $result;
+            }
+
+            $result['code']=200;
+            $result['value']=$ret;
+        }else{
+            $result['code']=500;
+            $result['msg']='memcached 配置错误';
+        }
+        return $result;
+    }
+
     protected function getRedisKeyInfo($server,$key)
     {
         $result = array();
@@ -89,7 +145,6 @@ class CacheController extends Controller{
             $result['type']=$type;
             $result['ttl']=$ttl;
             $result['values']=$values;
-            var_dump($result);
         }else{
             $result['code']=500;
             $result['msg']='redis 配置错误';

@@ -97,6 +97,7 @@ class SessionController extends Controller{
 		$result['barcode']='';
 		$result['screen_size']='';
 		$result['system_version']='';
+        $result['tc_version']='';
 		
 		$smodel = new Session();
 		$tvinfo = $smodel->getTvInfo($mac, $this->_server[$server]['db']);
@@ -131,6 +132,7 @@ class SessionController extends Controller{
 		$result['barcode']='';
 		$result['screen_size']='';
 		$result['system_version']='';
+        $result['tc_version']='';
 		$tempSession = false;
 		
 		if (($pos=strpos($sessionId, ':')) === false)

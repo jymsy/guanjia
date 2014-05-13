@@ -21,6 +21,6 @@
         <p>看心情</p>
 
         <h4>缓存管理</h4>
-        <p>看心情</p>
+        <p>查看，删除redis或memcached缓存</p>
     </div>
 </div>
